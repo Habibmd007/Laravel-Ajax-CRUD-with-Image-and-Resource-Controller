@@ -136,3 +136,27 @@ $(document).on("click", "#delete", function(arg){
     })
 
 })
+
+//pagination
+$(document).on('click', '.pagination li a', function(v) {
+    v.preventDefault();
+    //url taken
+    var page = $(this).attr('href');
+    //url number taken
+    var pageNumber = page.split("?page=")[1]
+    return getPagination(pageNumber);
+    console.log(pageNumber);
+    
+})
+
+function getPagination(prm) {
+    $.ajax({
+        url: 'paginate'+"?page="+prm,
+        type: 'GET',
+        dataType: 'HTML',
+        success: function(response){
+            $("#showAllDataHere").html(response);
+
+        }
+    })
+}

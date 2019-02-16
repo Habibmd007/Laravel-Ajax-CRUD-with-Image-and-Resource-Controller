@@ -14,10 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['middleware' => 'verified'] , function () {
+    
+    Route::get('getdata', 'ClientController@getdata');
+    Route::get('paginate', 'ClientController@paginate');
+    Route::get('/home', 'HomeController@index')->name('home');
+});
 Route::resource('client', 'ClientController');
-Route::get('getdata', 'ClientController@getdata');
-// Route::post('clientUpdate/{id}', 'ClientController@clientUpdate');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+

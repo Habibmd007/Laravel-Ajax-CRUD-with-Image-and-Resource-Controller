@@ -9,7 +9,6 @@
             </div>
             <input type="text" class="form-control" value="{{$contact->name}}" name="name">
             <input type="hidden" id="update" class="form-control" value="{{$contact->id}}" name="id">
-            {{-- <input type="hidden" name="csrf-token" id="_token" value="{{ csrf_token() }}"> --}}
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">

@@ -5,12 +5,19 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Clients</div>
+
+                <div class="card-header">
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Clients</button>
+                    <div class="pull-right">
+                      <button type="button" onclick="play()" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-play"></i></button>
+                    </div>
+                  </div>
+
                 <div class="card-body">
                     <div class="jumbotron jumbotron-fluid">
                         <div class="container">
                           <h3>{{Session::get('msg')}}</h3>
-                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Insert</button>
+                        {{-- <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Insert</button> --}}
                         <div id="showAllDataHere">
                         <table class="table table-dark" id="table">
                             <thead>
@@ -81,6 +88,16 @@
                               </form>
                           </div>
                           <div class="modal-footer">
+                              @if ($errors->any())
+                              <div class="alert alert-danger">
+                                  <ul>
+                                      @foreach ($errors->all() as $error)
+                                          <li>{{ $error }}</li>
+                                      @endforeach
+                                  </ul>
+                              </div>
+                          @endif
+                          
                           </div>
                         </div>
                       </div>
@@ -131,6 +148,16 @@
                             </form>
                           </div>
                           <div class="modal-footer">
+                              @if ($errors->any())
+                              <div class="alert alert-danger">
+                                  <ul>
+                                      @foreach ($errors->all() as $error)
+                                          <li>{{ $error }}</li>
+                                      @endforeach
+                                  </ul>
+                              </div>
+                          @endif
+                          
                           </div>
                         </div>
                       </div>

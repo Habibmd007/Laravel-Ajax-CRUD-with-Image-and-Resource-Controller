@@ -12,6 +12,11 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function paginate(){
+    	$contacts = Client::latest()->paginate(10);
+    	$i = 1;
+    	return view("response", compact("contacts", "i"));
+    }
     public function getdata(){
     	$contacts = Client::latest()->paginate(10);
     	$i = 1;
@@ -32,7 +37,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        //form showing by modal, without controller or ajax
     }
 
     /**
@@ -109,8 +114,12 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'image' => 'required|mimes:png,jpg,jpeg,svg,bmp,ico|max:1024',
+        ]);
+
         $contact = Client::find($id);
-        if ($contact->image) {
+        if (file_exists($contact->image) && $contact->image !=='images/default.jpg') {
             unlink($contact->image);
         }
 
