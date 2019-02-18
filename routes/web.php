@@ -16,10 +16,12 @@ Route::get('/', function () {
 });
 Route::group(['middleware' => 'verified'] , function () {
     
-    Route::get('getdata', 'ClientController@getdata');
-    Route::get('paginate', 'ClientController@paginate');
     Route::get('/home', 'HomeController@index')->name('home');
 });
+
+Route::get('getdata',  'ClientController@getdata');
+Route::get('errordata/{error}', 'ClientController@errordata');
+Route::get('paginate',  'ClientController@paginate');
 Route::resource('client', 'ClientController');
 
 Auth::routes(['verify' => true]);

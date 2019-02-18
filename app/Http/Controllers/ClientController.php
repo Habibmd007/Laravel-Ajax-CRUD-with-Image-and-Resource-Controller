@@ -17,11 +17,26 @@ class ClientController extends Controller
     	$i = 1;
     	return view("response", compact("contacts", "i"));
     }
+
+
+
+
+
     public function getdata(){
     	$contacts = Client::latest()->paginate(10);
     	$i = 1;
     	return view("response", compact("contacts", "i"));
     }
+
+    public function errordata($error)
+    {
+        return view('errorData',['error' => $error]);
+    }
+
+
+
+
+
 
 
     public function index()
@@ -48,6 +63,12 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'name' => 'required',
+            'phone' => 'required',
+            'image' => 'required|mimes:png,jpg,jpeg,svg,bmp,ico|max:1024',
+        ]);
+
         if ($request->email) {
             $img = $request->file('image');
             
@@ -105,16 +126,17 @@ class ClientController extends Controller
     	return view("edit", compact("contact"));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+
+
+
+
+
     public function update(Request $request, $id)
     {
         $this->validate($request,[
+            'name' => 'required',
+            'phone' => 'required',
             'image' => 'required|mimes:png,jpg,jpeg,svg,bmp,ico|max:1024',
         ]);
 

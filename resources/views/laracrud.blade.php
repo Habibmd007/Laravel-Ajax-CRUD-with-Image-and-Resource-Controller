@@ -17,6 +17,8 @@
                     <div class="jumbotron jumbotron-fluid">
                         <div class="container">
                           <h3>{{Session::get('msg')}}</h3>
+                          
+
                         {{-- <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Insert</button> --}}
                         <div id="showAllDataHere">
                         <table class="table table-dark" id="table">
@@ -147,16 +149,8 @@
                               
                             </form>
                           </div>
-                          <div class="modal-footer">
-                              @if ($errors->any())
-                              <div class="alert alert-danger">
-                                  <ul>
-                                      @foreach ($errors->all() as $error)
-                                          <li>{{ $error }}</li>
-                                      @endforeach
-                                  </ul>
-                              </div>
-                          @endif
+                          <div class="modal-footer" id="showError">
+                             
                           
                           </div>
                         </div>
