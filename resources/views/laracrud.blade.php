@@ -9,7 +9,7 @@
                 <div class="card-header">
                     <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Clients</button>
                     <div class="pull-right">
-                      <button type="button" onclick="play()" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-play"></i></button>
+                      <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-play"></i></button>
                     </div>
                   </div>
 
@@ -89,16 +89,8 @@
                                 <input type="hidden" name="_token" id="csrftoken" value="{{ csrf_token() }}">
                               </form>
                           </div>
-                          <div class="modal-footer">
-                              @if ($errors->any())
-                              <div class="alert alert-danger">
-                                  <ul>
-                                      @foreach ($errors->all() as $error)
-                                          <li>{{ $error }}</li>
-                                      @endforeach
-                                  </ul>
-                              </div>
-                          @endif
+                          <div class="modal-footer showError">
+                              
                           
                           </div>
                         </div>
@@ -149,7 +141,7 @@
                               
                             </form>
                           </div>
-                          <div class="modal-footer" id="showError">
+                          <div class="modal-footer showError">
                              
                           
                           </div>

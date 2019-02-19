@@ -25,8 +25,9 @@ $(function () {
             }
         },
 
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert("some error");
+        error: function(xhr, XMLHttpRequest, textStatus, errorThrown) {
+            return getErrorData(xhr.responseText);
+            
          },
 
         complete: function(){
@@ -82,7 +83,7 @@ $(function () {
             dataType: "HTMl",
             success: function(response){
                 console.log(response);
-                $("#showError").html(response);
+                $(".showError").html(response);
             }	
         })
     };
@@ -97,6 +98,8 @@ $(function () {
             }	
         })
     }
+
+    
 }) //end
 
 
@@ -104,7 +107,10 @@ $(function () {
 
 
 // =====================================================
-
+//to remove error message
+$('.modal').on('hidden.bs.modal', function () {
+    $('.showError').html('');
+})
 
 //nicher func gula eta pay na tai 2nd bar dea holo
 function getCustomerData(){
@@ -132,7 +138,6 @@ function singleview(v){
 
 //Edit
 function edit(v){
-    $('#showError').html('');
     $.ajax({
         type:"get",
         url:'client/'+v+'/edit',
